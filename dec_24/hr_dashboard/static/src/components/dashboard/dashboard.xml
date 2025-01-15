@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="hr_dashboard.HRDashboard" owl="1">
+        <div class="vh-100 overflow-auto bg-muted">
+            <div class="row m-3">
+                <div class="col-lg-2">
+                    <div class="card shadow-sm border m-2 p-4 bg-white">
+                        <div class="text-center mb-3">
+                            <img t-att-src="'data:image/png;base64,' + companyLogo" alt="Company Logo" class="company-logo img-fluid" style="max-width: 150px;"/>
+                        </div>
+                        <div class="text-center">
+                            <t t-if="state.userImageUrl">
+                                <img t-att-src="state.userImageUrl" alt="User Image" class="user-image img-fluid rounded-circle mb-3"/>
+                            </t>
+                            <h3 class="text-primary fw-bold pt-2">
+                                <t t-esc="state.user"/>
+                            </h3>
+                            <h4 class="text-primary fw-semibold">
+                                <t t-esc="state.jobTitle"/>
+                            </h4>
+                            <h4 class="text-primary fw-semibold">
+                                <t t-esc="state.employeeDepartment"/>
+                            </h4>
+                        </div>
+                        <div class="row text-muted mt-2 mb-2">
+                            <div class="col-lg-4">
+                                <strong>Gender</strong><br/><br/>
+                                <strong>DOB</strong><br/><br/> 
+                                <strong>Age</strong><br/><br/> 
+                                <strong>Mobile</strong><br/><br/>
+                                <strong>Email</strong><br/><br/>
+                            </div>
+                            <div class="col-lg-8">
+                                <t t-esc="state.employeeGender"/><br/><br/>
+                                <t t-esc="state.employeeBirthday"/><br/><br/>
+                                <t t-esc="state.employeeAge"/><br/><br/>
+                                <t t-esc="state.employeeMobile"/><br/><br/>
+                                <t t-esc="state.employeeEmail"/><br/><br/>
+                            </div>
+                        </div> 
+                        <div class="row text-center">
+                            <h4 class="text-center">Joined</h4>
+                        </div>
+                        <div class="row text-center">
+                            <h4 class="text-center"><t t-esc="state.employeeExperience"/></h4>
+                        </div>
+                    </div>                    
+                </div>
+                <!-- Employee Manager  -->
+                <div class="col-lg-10" t-if="isManager == 1">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <KpiCard onClick.bind="viewPaySlips" name="'Payslips'" value="state.paySlipCount"/>
+                                <KpiCard onClick.bind="viewTimeSheets" name="'Timesheets'" value="state.timeSheetCount"/>
+                                <KpiCard onClick.bind="viewContracts" name="'Contracts'" value="state.contractCount"/>
+                                <KpiCard onClick.bind="viewEmployees" name="'Employees'" value="state.employeeCount"/>
+                            </div>
+                            <div class="row">
+                                <KpiCardMedium onClick.bind="viewLeaveRequests" name="'Leave Requests'" value="state.leaveRequestCount"/>
+                                <KpiCard onClick.bind="viewLeaveToday" name="'Leave Today'" value="state.leaveTodayCount"/>
+                                <KpiCard onClick.bind="viewLeaveMonth" name="'Leave This Month'" value="state.leaveMonthCount"/>
+                            </div>
+                            <div class="row">
+                                <KpiCard onClick.bind="viewTasks" name="'Tasks'" value="state.taskCount"/>
+                                <KpiCard onClick.bind="viewPendingTasks" name="'Pending Tasks'" value="state.pendingTaskCount"/>
+                                <KpiCardMedium onClick.bind="viewProjects" name="'Projects'" value="state.projectCount"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border m-2 p-4 bg-white">
+                                <div class="card-header bg-primary text-white d-flex align-items-center justify-content-between">
+                                    <h5 class="mb-0">Upcoming Birthdays</h5>
+                                    <span class="badge bg-warning text-dark" style="font-size:14px">🎉</span>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush" style="max-height: 125px; overflow-y: auto;">
+                                        <t t-if="state.upcomingBirthDays">
+                                            <t t-foreach="state.upcomingBirthDays" t-as="birthday" t-key="birthday['id']">
+                                                <li class="list-group-item d-flex align-items-center">
+                                                    <img t-att-src="'data:image/png;base64,' + birthday.image" alt="Staff Photo" class="rounded-circle me-3" width="50" height="50"/>
+                                                    <div class="flex-grow-1">
+                                                    <h6 class="mb-0"><t t-esc="birthday.name"/></h6>
+                                                    <small class="text-muted"><t t-esc="birthday.birthday"/></small>
+                                                    </div>
+                                                    <t t-if="birthday.days &gt; 0">
+                                                        <span class="badge bg-success" style="font-size:14px">In <t t-esc="birthday.days"/> Days</span>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span class="badge bg-success" style="font-size:14px">Today</span>
+                                                    </t>
+                                                </li>
+                                            </t>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card shadow-sm border m-2 p-4 bg-white">
+                                <div class="card-header bg-primary text-white d-flex align-items-center justify-content-between">
+                                    <h5 class="mb-0">Pending Leaves</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush" style="max-height: 100px; overflow-y: auto;">
+                                        <t t-if="state.pendingLeaves">
+                                            <t t-foreach="state.pendingLeaves" t-as="leave" t-key="leave['leave_type_id']">
+                                                <li class="list-group-item d-flex align-items-center">
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-0"><t t-esc="leave.leave_type.en_US"/></h6>
+                                                    </div>
+                                                    <span style="font-size:14px"><t t-esc="leave.number_of_days"/> Days</span>
+                                                </li>
+                                            </t>
+                                        </t>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Department Employees</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRender type="'pie'" title="'Department Employees'" config="state.departmentEmployees"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Department Leaves</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRender type="'doughnut'" title="'Department Leaves'" config="state.departmentMonthLeaves"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">My Leaves</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRender type="'bar'" title="'My Leaves'" config="state.myLeaves"/>
+                            </div>
+
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">My Timesheets</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRender type="'bar'" title="'My Timesheets'" config="state.myTimesheets"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Normal Employee -->
+                <div class="col-lg-10" t-if="isManager == 0">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <KpiCardMedium onClick.bind="viewPaySlips" name="'Payslips'" value="state.paySlipCount"/>
+                                <KpiCardMedium onClick.bind="viewTimeSheets" name="'Timesheets'" value="state.timeSheetCount"/>
+                                <KpiCardMedium onClick.bind="viewContracts" name="'Contracts'" value="state.contractCount"/>
+                                <KpiCardMedium onClick.bind="viewLeaveRequests" name="'Leave Requests'" value="state.leaveRequestCount"/>
+                            </div>
+                            <div class="row">
+                                <KpiCard onClick.bind="viewTasks" name="'Tasks'" value="state.taskCount"/>
+                                <KpiCard onClick.bind="viewPendingTasks" name="'Pending Tasks'" value="state.pendingTaskCount"/>
+                                <KpiCardMedium onClick.bind="viewProjects" name="'Projects'" value="state.projectCount"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm border m-2 p-4 bg-white">
+                                <div class="card-header bg-primary text-white d-flex align-items-center justify-content-between">
+                                    <h5 class="mb-0">Upcoming Birthdays</h5>
+                                    <span class="badge bg-warning text-dark" style="font-size:14px">🎉</span>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush" style="max-height: 125px; overflow-y: auto;">
+                                        <t t-if="state.upcomingBirthDays">
+                                            <t t-foreach="state.upcomingBirthDays" t-as="birthday" t-key="birthday['id']">
+                                                <li class="list-group-item d-flex align-items-center">
+                                                    <img t-att-src="'data:image/png;base64,' + birthday.image" alt="Staff Photo" class="rounded-circle me-3" width="50" height="50"/>
+                                                    <div class="flex-grow-1">
+                                                    <h6 class="mb-0"><t t-esc="birthday.name"/></h6>
+                                                    <small class="text-muted"><t t-esc="birthday.birthday"/></small>
+                                                    </div>
+                                                    <t t-if="birthday.days &gt; 0">
+                                                        <span class="badge bg-success" style="font-size:14px">In <t t-esc="birthday.days"/> Days</span>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span class="badge bg-success" style="font-size:14px">Today</span>
+                                                    </t>
+                                                </li>
+                                            </t>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card shadow-sm border m-2 p-4 bg-white">
+                                <div class="card-header bg-primary text-white d-flex align-items-center justify-content-between">
+                                    <h5 class="mb-0">Pending Leaves</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush" style="max-height: 100px; overflow-y: auto;">
+                                        <t t-if="state.pendingLeaves">
+                                            <t t-foreach="state.pendingLeaves" t-as="leave" t-key="leave['leave_type_id']">
+                                                <li class="list-group-item d-flex align-items-center">
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-0"><t t-esc="leave.leave_type.en_US"/></h6>
+                                                    </div>
+                                                    <span style="font-size:14px"><t t-esc="leave.number_of_days"/> Days</span>
+                                                </li>
+                                            </t>
+                                        </t>
+                                    </ul>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">My Leaves</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRender type="'bar'" title="'My Leaves'" config="state.myLeaves"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">My Timesheets</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRender type="'bar'" title="'My Timesheets'" config="state.myTimesheets"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

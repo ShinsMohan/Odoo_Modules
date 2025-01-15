@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_payslip_user,hr.payslip,hr_payroll.model_hr_payslip,base.group_user,1,1,1,1
+access_hr_contract_user,hr.contract,hr_contract.model_hr_contract,base.group_user,1,1,1,1
