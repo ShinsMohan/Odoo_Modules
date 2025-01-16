@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_medical_examination">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="row border">
+                        <div class="col-2">
+                            <!-- <img t-att-src="''" style="max-height: 45px;"/> -->
+                        </div>
+                        <div class="col-10 text-center">
+                            <strong>MEDICAL EXAMINATION FORM</strong><br/>
+                            <span>OFFSHORE CONTRACTOR PERSONNEL</span><br/>
+                            <span>OCCUPATIONAL HEALTH</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h6 class="text-black p-2">SECTION B - CLINICAL ASSESSMENT</h6>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>6. NURSING ASSESSMENT:</strong> <em>To be completed by designated nursing staff</em>
+                            </div>
+                        </div>
+                        
+                        <table class="table table-bordered table-sm mt-2">
+                            <tr>
+                                <th>Height(cm)</th>
+                                <th>Weight(kg)</th>
+                                <th>BMI</th>
+                                <th>Pulse(min)</th>
+                                <th>BP (Take 2nd reading if high)</th>
+                                <th>BP (2nd reading)</th>
+                            </tr>
+                            <tr>
+                                <td>170</td>
+                                <td>65</td>
+                                <td>88</td>
+                                <td>100</td>
+                                <td>100</td>
+                                <td>100</td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-bordered table-sm mt-2">
+                            <tr>
+                                <th colspan="2">Distant Vision</th>
+                                <th colspan="2">Near Vision</th>
+                                <th colspan="2">Speech Discrimination</th>
+                                <th rowspan="2">Colour Vision</th>
+                            </tr>
+                            <tr>
+                                <th>Uncorrected</th>
+                                <th>Corrected</th>
+                                <th>Uncorrected</th>
+                                <th>Corrected</th>
+                                <th>Right ear</th>
+                                <th>Left ear</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>R eye</td>
+                                            <td>New Column</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>R</td>
+                                            <td>New Column</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>Normal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>Normal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>Normal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal safe</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal unsafe</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>L eye</td>
+                                            <td>New Column</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>L</td>
+                                            <td>New Column</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>Normal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>Normal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table table-borderless mb-0">
+                                        <tr>
+                                            <td>Normal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal safe</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Abnormal unsafe</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="mt-4">
+                            <strong>PHYSICIAN ASSESSMENT:</strong> <em>To be completed by the examining Physician</em>
+                            <table class="table table-bordered table-sm mt-2">
+                                <tr>
+                                    <th>General</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Eyes</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>ENT</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Oral cavity</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Teeth</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Lungs/Chest</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Cardiovascular</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Abdomen</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Hernial Orifices</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Genitourinary</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Musculoskeletal</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Skin</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Blood disorders</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Neurological</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Endocrinological</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Metabolic</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Cancer / Tumor</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Infectious Dis.</th>
+                                    <td>Normal</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="mt-4">
+                            <strong>INVESTIGATIONS:</strong>
+                            <table class="table table-bordered table-sm mt-2">
+                                <tr>
+                                    <th>Chest Xray</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>ECG</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Spirometry</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>Audiometry</th>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <th>VO₂ max</th>
+                                    <td>Normal</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="mt-4">
+                            <strong>LAB RESULTS:</strong>
+                            <div class="border p-2 mt-2">No abnormal results</div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h6 class="text-black p-2">HEALTH MONITORING AND MEDICAL SURVEILLANCE</h6>
+                            <div style="border: 1px solid black; padding: 10px;">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p>Obesity</p>
+                                        <p>Dyslipidaemia</p>
+                                        <p>Impaired FBS</p>
+                                        <p>Diabetes</p>
+                                        <p>Elevated BP</p>
+                                        <p>Hypertension</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p>Respiratory Dis.</p>
+                                        <p>Abnormal ECG</p>
+                                        <p>Cardiovascular Dis.</p>
+                                        <p>Hyperuricemia</p>
+                                        <p>Hypothyroidism</p>
+                                        <p>Hyperthyroidism</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p>Liver Disorder</p>
+                                        <p>Kidney Disorder</p>
+                                        <p>Infectious Disease</p>
+                                        <p>Vision Correction</p>
+                                        <p>Fatty liver</p>
+                                        <p>Asthma</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p>Neoplasm</p>
+                                        <p>Mental Disorder</p>
+                                        <p>Hearing Conservation</p>
+                                        <p>Skin Disorder</p>
+                                        <p>Anemia</p>
+                                        <p>Not Applicable</p>
+                                    </div>
+                                </div>
+                                <p>Others</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h6 class="text-black p-2">SECTION C - FITNESS TO WORK CERTIFICATE</h6>
+                            <p>This certificate is invalid without candidate’s photograph, examining physicians’ signature, and official stamp.</p>
+                            <table class="table table-bordered table-sm mt-2">
+                                <tr>
+                                    <td>Name</td>
+                                    <td>John Doe</td>
+                                </tr>
+                                <tr>
+                                    <td>Date of Birth</td>
+                                    <td>01/01/1980</td>
+                                </tr>
+                                <tr>
+                                    <td>Qatar ID No.</td>
+                                    <td>1234567890</td>
+                                </tr>
+                                <tr>
+                                    <td>Nationality</td>
+                                    <td>Qatari</td>
+                                </tr>
+                                <tr>
+                                    <td>Company</td>
+                                    <td>QatarEnergy</td>
+                                </tr>
+                                <tr>
+                                    <td>Job title</td>
+                                    <td>Engineer</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="mt-4 border p-2">
+                            <p>Above mentioned individual has been examined in accordance with QatarEnergy Offshore medical fitness guidelines and is declared:</p>
+                            <div>
+                                <label class="form-check-label"><input type="checkbox"/> Fit for offshore work</label><br/>
+                                <label class="form-check-label"><input type="checkbox"/> Fit for offshore work with medical surveillance</label><br/>
+                                <label class="form-check-label"><input type="checkbox"/> Temporarily unfit for offshore work, review date</label>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 border p-2">
+                            <p>This certificate is valid from</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h6 class="text-black p-2">SECTION C - FITNESS TO WORK CERTIFICATE</h6>
+                            <p>This certificate is invalid without candidate’s photograph, examining physicians’ signature, and official stamp.</p>
+                            <table class="table table-bordered table-sm mt-2">
+                                <tr>
+                                    <td>Examining Physician Name:</td>
+                                    <td>John Doe Examiner</td>
+                                </tr>
+                                <tr>
+                                    <td>Designation:</td>
+                                    <td>dsfsd</td>
+                                </tr>
+                                <tr>
+                                    <td>Practice license No.:</td>
+                                    <td>1234567890</td>
+                                </tr>
+                                <tr>
+                                    <td>Licensing organization:</td>
+                                    <td>ghdfgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Medical center address:</td>
+                                    <td>dfghdyj</td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>email@gmail.com</td>
+                                </tr>
+                                <tr style="height: 100px;">
+                                    <td colspan="3" class="border p-2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">Examining Physician Signature and Stamp</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

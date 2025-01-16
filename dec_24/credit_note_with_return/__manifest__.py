@@ -1,0 +1,21 @@
+{
+    'name': 'Product Return with Credit Note',
+    'version': '17.0.1.0.0',
+    'summary': '',
+    'description': 'This module adds a feature to automatically generate credit note against return.',
+    'category': 'Stock',
+    'author': 'Shayar',
+    'company': 'Shayar',
+    'maintainer': 'Shayar',
+    'module_type': 'official',
+    # 'website': 'https://yourwebsite.com',
+    'depends': ['stock'],  
+    'data': [
+        'views/credit_note.xml', 
+    ],
+    # 'images': ['static/description/banner.jpg'],  
+    'license': 'AGPL-3',
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}
