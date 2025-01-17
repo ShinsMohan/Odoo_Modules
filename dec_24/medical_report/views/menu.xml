@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Hospital Management Form View for Medical Examination -->
+    <record id="view_hospital_management_form" model="ir.ui.view">
+        <field name="name">hospital.management.form</field>
+        <field name="model">medical.examination</field>
+        <field name="arch" type="xml">
+            <form string="Medical Examination">
+                <sheet>
+                    <header>
+                        <field name="name" string="Reference" readonly="1"/>
+                        <field name="date" string="Examination Date" default="today"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="height" string="Height (cm)"/>
+                            <field name="weight" string="Weight (kg)"/>
+                            <field name="bmi" string="BMI" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="pulse" string="Pulse (min)"/>
+                            <field name="bp_first" string="BP (First Reading)"/>
+                            <field name="bp_second" string="BP (Second Reading)"/>
+                        </group>
+                    </group>
+
+                    <group string="Vision">
+                        <group>
+                            <field name="distant_vision_r" string="Distant Vision Right"/>
+                            <field name="distant_vision_l" string="Distant Vision Left"/>
+                            <field name="near_vision_r" string="Near Vision Right"/>
+                            <field name="near_vision_l" string="Near Vision Left"/>
+                        </group>
+                    </group>
+
+                    <group string="Physician Assessment">
+                        <group>
+                            <field name="general" string="General"/>
+                            <field name="eyes" string="Eyes"/>
+                            <field name="ent" string="ENT"/>
+                            <field name="oral_cavity" string="Oral Cavity"/>
+                        </group>
+                        <group>
+                            <field name="teeth" string="Teeth"/>
+                            <field name="lungs_chest" string="Lungs/Chest"/>
+                            <field name="cardiovascular" string="Cardiovascular"/>
+                            <field name="abdomen" string="Abdomen"/>
+                        </group>
+                    </group>
+
+                    <group string="Investigations">
+                        <group>
+                            <field name="chest_xray" string="Chest X-ray"/>
+                            <field name="ecg" string="ECG"/>
+                            <field name="spirometry" string="Spirometry"/>
+                            <field name="audiometry" string="Audiometry"/>
+                        </group>
+                    </group>
+
+                    <group string="Lab Results">
+                        <group>
+                            <field name="lab_results" string="Lab Results"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Hospital Management List View for Medical Examination -->
+    <record id="view_hospital_management_list" model="ir.ui.view">
+        <field name="name">hospital.management.list</field>
+        <field name="model">medical.examination</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="bmi"/>
+                <field name="pulse"/>
+                <field name="bp_first"/>
+                <field name="bp_second"/>
+                <field name="lab_results"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action for Hospital Management -->
+    <record id="action_hospital_management_list" model="ir.actions.act_window">
+        <field name="name">Hospital Management</field>
+        <field name="res_model">medical.examination</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Items for Hospital Management -->
+    <menuitem id="menu_hospital_management_root" name="Hospital Management" sequence="1"/>
+    <menuitem id="menu_medical_examinations" parent="menu_hospital_management_root"
+              action="action_hospital_management_list" name="Medical Examinations"/>
+
+    <!-- Hospital Reports Section -->
+    <menuitem id="menu_reports_root" name="Reports" parent="menu_hospital_management_root" sequence="2"/>
+
+    <!-- Action for Report Generation -->
+    <record id="action_report_generate" model="ir.actions.server">
+        <field name="name">Generate Report</field>
+        <field name="model_id" ref="model_medical_examination"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.generate_report()  <!-- This will trigger the generate_report method -->
+        </field>
+    </record>
+
+    <!-- Report Generation Button -->
+    <record id="view_report_form" model="ir.ui.view">
+        <field name="name">report.generate.form</field>
+        <field name="model">medical.examination</field>
+        <field name="arch" type="xml">
+            <form string="Generate Report">
+                <sheet>
+                    <group>
+                        <button name="generate_report" string="Generate Report" type="object"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_form" model="ir.actions.act_window">
+        <field name="name">Generate Report</field>
+        <field name="res_model">medical.examination</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_form"/>
+    </record>
+
+    <menuitem id="menu_generate_report" parent="menu_reports_root" action="action_report_form" name="Generate Report"/>
+</odoo>
